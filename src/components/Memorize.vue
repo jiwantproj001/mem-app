@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import pracConfig from "@/components/Practise_Configuration.json";
+
 export default {
     name: 'Memorize',
     data: function(){
@@ -50,10 +52,22 @@ export default {
             this.practiseIndex = 0
             switch(this.type){
                 case 'memorize':
-                    this.practiseArray = this.buildPractiseArray(this.count, 10, 5, 10, 5)
+                    this.practiseArray = this.buildPractiseArray(
+                        this.count, 
+                        pracConfig.memorize.straightStart, 
+                        pracConfig.memorize.reverse, 
+                        pracConfig.memorize.jumbled, 
+                        pracConfig.memorize.straightEnd
+                    )
                     break;
                 case 'revise':
-                this.practiseArray = this.buildPractiseArray(this.count, 5, 3, 5, 3)
+                this.practiseArray = this.buildPractiseArray(
+                    this.count, 
+                    pracConfig.revise.straightStart, 
+                    pracConfig.revise.reverse, 
+                    pracConfig.revise.jumbled, 
+                    pracConfig.revise.straightEnd
+                )
                     break;
                 case 'practise':
                     if(this.practise === 'straight'){
