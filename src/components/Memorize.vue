@@ -50,7 +50,7 @@ export default {
             this.practiseIndex = 0
             switch(this.type){
                 case 'memorize':
-                    this.practiseArray = this.buildPractiseArray(this.count, 10, 5, 10, 3)
+                    this.practiseArray = this.buildPractiseArray(this.count, 10, 5, 10, 5)
                     break;
                 case 'revise':
                 this.practiseArray = this.buildPractiseArray(this.count, 5, 3, 5, 3)

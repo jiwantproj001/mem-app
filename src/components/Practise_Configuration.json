@@ -1,0 +1,14 @@
+{
+    "memorize": {
+        "straightStart": 10,
+        "reverse": 5,
+        "jumbled": 10,
+        "straightEnd": 5
+    },
+    "revise": {
+        "straightStart": 5,
+        "reverse": 3,
+        "jumbled": 5,
+        "straightEnd": 3
+    }
+}
