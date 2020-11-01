@@ -32,65 +32,75 @@
 
 <script>
 export default {
-  name: 'Memorize',
-  data: function(){
-      return {
-          type: 'x',
-          practise: 'y',
-          count: 0,
-          rep: 0,
-          practiseArray: [],
-          practiseIndex: 0,
-      }
-  },
-  methods: {
-      setPractise(){
-          console.log('Set the Practise Mode')
-          this.practiseArray = []
-          this.practiseIndex = 0
-          switch(this.type){
+    name: 'Memorize',
+    data: function(){
+        return {
+            type: 'x',
+            practise: 'y',
+            count: 0,
+            rep: 0,
+            practiseArray: [],
+            practiseIndex: 0,
+        }
+    },
+    methods: {
+        setPractise(){
+            console.log('Set the Practise Mode')
+            this.practiseArray = []
+            this.practiseIndex = 0
+            switch(this.type){
                 case 'memorize':
-                    const elementStraight = Array.from({length: this.count}, (_, i) => i + 1)
-                    const elementReverse = Array.from({length: this.count}, (_, i) => this.count - i)
-                    console.log(elementStraight)
-                    console.log(Array.from({length: this.count}, (_, i) => i + 1).sort(() => Math.random() - 0.5))
-                    console.log(elementStraight)
-
-                    // Add Straight Elements 10 times
-                    for(let i=0; i<5; i++){
-                        this.practiseArray.push(...elementStraight)
-                    }
-
-                    // Add Reverse Elemetns 5 times
-                    for(let i=0; i<3; i++){
-                        this.practiseArray.push(...elementReverse)
-                    }
-
-                    // Add Jumbled Elements 10 times
-                    for(let i=0; i<10; i++){
-                        this.practiseArray.push(...Array.from({length: this.count}, (_, i) => i + 1).sort(() => Math.random() - 0.5))
-                    }
-                    
-                    // Add Straight Element 3 times
-                    for(let i=0; i<3; i++){
-                        this.practiseArray.push(...elementStraight)
-                    }
-                    console.log(this.practiseArray)
-                    // console.log(type(typeof this.practiseArray))
+                    this.practiseArray = this.buildPractiseArray(this.count, 10, 5, 10, 3)
                     break;
                 case 'revise':
+                this.practiseArray = this.buildPractiseArray(this.count, 5, 3, 5, 3)
                     break;
                 case 'practise':
+                    if(this.practise === 'straight'){
+                        this.practiseArray = this.buildPractiseArray(this.count, this.rep, 0, 0, 0)
+                    } else if (this.practise === 'reverse'){
+                        this.practiseArray = this.buildPractiseArray(this.count, 0, this.rep, 0, 0)
+                    } else if (this.practise === 'jumble') {
+                        this.practiseArray = this.buildPractiseArray(this.count, 0, 0,this.rep, 0)
+                    }
                     break;
 
-          }
-      },
-      clearPractise(){
-          console.log('Reset Practise')
-      },
-      nextOption(){
-          console.log('Next Option')
-          this.practiseIndex += 1
+            }
+        },
+        clearPractise(){
+            console.log('Reset Practise')
+        },
+        nextOption(){
+            console.log('Next Option')
+            this.practiseIndex += 1
+        },
+        buildPractiseArray(count, straightCnt, reverseCnt, jumbleCnt, endStraightCnt) {
+            let pracArr = []
+            const elementStraight = Array.from({length: count}, (_, i) => i + 1)
+            const elementReverse = Array.from({length: count}, (_, i) => count - i)
+            
+            // Add Straight Array with iterations
+            for(let i=0; i<straightCnt; i++){
+                pracArr.push(...elementStraight)
+            }
+
+            // Add Reverse Array with iterations
+            for(let i=0; i<reverseCnt; i++){
+                pracArr.push(...elementReverse)
+            }
+
+            // Add Jumbled Array with iterations
+            for(let i=0; i<jumbleCnt; i++){
+                // pracArr.push(...Array.from({length: count}, (_, i) => i + 1).sort(() => Math.random() - 0.5))
+                pracArr.push(...Array.from({length: count}, (_, i) => Math.floor(Math.random() * count) + 1))
+            }
+                    
+            // Add Straight Array with iterations
+            for(let i=0; i<endStraightCnt; i++){
+                pracArr.push(...elementStraight)
+            }
+            
+            return pracArr
       }
   },
 
