@@ -1,3 +1,5 @@
+git config --global user.name "Jiwant"
+git config --global user.email jiwantproj001@gmail.com
 npm run build
 git add .
 git commit -m 'deploy'
