@@ -16,8 +16,8 @@
         <hr>
         <label for="practise">Count</label>
         <input type="number" v-model="count">
-        <label for="practise">Rep</label>
-        <input type="number" v-model="rep">
+        <label v-if="showRep" for="practise">Rep</label>
+        <input v-if="showRep" type="number" v-model="rep">
         
         <hr>
         <button type="button" @click="setPractise">Practise</button>
@@ -41,6 +41,7 @@ export default {
             practise: null,
             count: 0,
             rep: 0,
+            showRep: false,
             practiseArray: [],
             practiseIndex: 0,
         }
@@ -116,6 +117,15 @@ export default {
             return pracArr
         }
     },
+    watch: {
+        type: function(val){
+            if(val === 'practise'){
+                this.showRep = true
+            } else {
+                this.showRep = false
+            }
+        }
+    }
 }
 </script>
 
