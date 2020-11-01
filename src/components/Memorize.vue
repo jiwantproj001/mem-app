@@ -35,8 +35,8 @@ export default {
     name: 'Memorize',
     data: function(){
         return {
-            type: 'x',
-            practise: 'y',
+            type: null,
+            practise: null,
             count: 0,
             rep: 0,
             practiseArray: [],
@@ -64,7 +64,6 @@ export default {
                         this.practiseArray = this.buildPractiseArray(this.count, 0, 0,this.rep, 0)
                     }
                     break;
-
             }
         },
         clearPractise(){
@@ -101,9 +100,8 @@ export default {
             }
             
             return pracArr
-      }
-  },
-
+        }
+    },
 }
 </script>
 
